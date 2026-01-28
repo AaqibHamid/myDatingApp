@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using API.Data;
@@ -42,10 +43,13 @@ public class AccountController(AppDbContext context, ITokenService tokenService)
         if (user == null) return Unauthorized("Invalid email address");
 
         using var hmac = new HMACSHA512(user.PasswordSalt);
+
         var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
 
-        if (!computedHash.SequenceEqual(user.PasswordHash)) 
-            return Unauthorized("Invalid password");
+        for (var i = 0; i < computedHash.Length; i++)
+        {
+            if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
+        }
 
         return user.ToDto(tokenService);
     }
