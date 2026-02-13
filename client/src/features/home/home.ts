@@ -11,6 +11,7 @@ import { AccountService } from '../../core/services/account-service';
 })
 export class Home {
   protected registerMode = signal(false);
+  // to show register button if user is not logged in
   protected accountService = inject(AccountService);
 
   showRegister(value: boolean) {
