@@ -1,0 +1,62 @@
+<div class="checker-container">
+  <div class="checker-card">
+    <h2>User Availability Checker</h2>
+    <p class="subtitle">Check if your desired username is available</p>
+
+    <form [formGroup]="usernameForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <app-username-input
+          formControlName="username"
+          label="Username"
+          placeholder="Enter username"
+          [minLength]="minLength"
+          [maxLength]="maxLength"
+          [showErrors]="true"
+          [errors]="usernameControl?.errors ?? null"
+          [touched]="usernameControl?.touched ?? false"
+        />
+
+        @if (status() !== 'idle' || message()) {
+          <app-status-indicator 
+            [status]="status()" 
+            [message]="message()">
+          </app-status-indicator>
+        }
+      </div>
+
+      <div class="form-actions">
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="!canSubmit()">
+          {{ isLoading() ? 'Saving...' : 'Save Username' }}
+        </button>
+        <button 
+          type="button" 
+          class="btn btn-secondary"
+          (click)="resetForm()">
+          Reset
+        </button>
+      </div>
+    </form>
+
+    @if (saveSuccess()) {
+      <div class="success-message">
+        <h3>Success!</h3>
+        <p>Username has been saved successfully.</p>
+        <pre>{{ savedPayload() }}</pre>
+      </div>
+    }
+
+    <app-form-debug
+      [status]="status()"
+      [message]="message()"
+      [isLoading]="isLoading()"
+      [formValid]="usernameForm.valid"
+      [formTouched]="usernameForm.touched"
+      [formDirty]="usernameForm.dirty"
+      [formValue]="usernameForm.value"
+      [formErrors]="usernameControl?.errors ?? null"
+    />
+  </div>
+</div>

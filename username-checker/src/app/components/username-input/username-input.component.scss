@@ -1,0 +1,62 @@
+.username-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .input-label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+  }
+
+  .form-control {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:focus,
+    &.focused {
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    }
+
+    &.valid {
+      border-color: #28a745;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+      }
+    }
+
+    &.invalid {
+      border-color: #dc3545;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+      }
+    }
+
+    &:disabled {
+      background-color: #f5f5f5;
+      cursor: not-allowed;
+    }
+
+    &::placeholder {
+      color: #aaa;
+    }
+  }
+
+  .validation-errors {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    .error-message {
+      color: #dc3545;
+      font-size: 0.8rem;
+    }
+  }
+}

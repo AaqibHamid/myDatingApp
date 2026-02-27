@@ -1,0 +1,29 @@
+<div class="form-debug">
+<h4>Form Debug Info</h4>
+<table>
+<tr><td>Status:</td><td>{{ status() }}</td></tr>
+<tr><td>Message:</td><td>{{ message() }}</td></tr>
+<tr><td>Loading:</td><td>{{ isLoading() }}</td></tr>
+<tr><td>Valid:</td><td>{{ formValid() }}</td></tr>
+<tr><td>Touched:</td><td>{{ formTouched() }}</td></tr>
+<tr><td>Dirty:</td><td>{{ formDirty() }}</td></tr>
+<tr><td>Value:</td><td><pre>{{ formValue() | json }}</pre></td></tr>
+<tr><td>Errors:</td><td><pre>{{ formErrors() | json }}</pre></td></tr>
+</table>
+
+<div class="how-it-works">
+<h4>How it works</h4>
+<ul>
+<li><strong>Debounce:</strong> Waits 500ms after you stop typing to check</li>
+<li><strong>States:</strong> Idle → Checking → Available/Taken/Error</li>
+<li><strong>Reserved:</strong> Try "admin" or "system" to see reserved username handling</li>
+<li><strong>Taken:</strong> Try "john" or "jane" to see taken username handling</li>
+</ul>
+
+<h4>Error Testing</h4>
+<ul>
+<li><strong>type "timeout"</strong> - Simulates network timeout</li>
+<li><strong>type "error"</strong> - Simulates server error (500)</li>
+</ul>
+</div>
+</div>

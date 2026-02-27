@@ -1,0 +1,38 @@
+<div class="username-input-wrapper">
+  <label for="username-input" class="input-label">{{ label() }}</label>
+  <input
+    type="text"
+    id="username-input"
+    [value]="value()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [attr.minlength]="minLength()"
+    [attr.maxlength]="maxLength()"
+    class="form-control"
+    [class.invalid]="isInvalid"
+    [class.valid]="isValid"
+    [class.focused]="focused()"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+    (focus)="onFocus()"
+  />
+  @if (showErrors() && touched()) {
+    <div class="validation-errors">
+      @if (hasError('required')) {
+        <small class="error-message">Username is required</small>
+      }
+      @if (hasError('minlength')) {
+        <small class="error-message">Minimum {{ minLength() }} characters required</small>
+      }
+      @if (hasError('maxlength')) {
+        <small class="error-message">Maximum {{ maxLength() }} characters allowed</small>
+      }
+      @if (hasError('pattern')) {
+        <small class="error-message">Only letters, numbers, and underscores allowed</small>
+      }
+      @if (hasError('usernameTaken')) {
+        <small class="error-message">Username is already taken</small>
+      }
+    </div>
+  }
+</div>
